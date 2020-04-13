@@ -1,2 +1,4 @@
 # oneline.pl
-A small perl script containing different oneliners that can be executed from a menu. Provides lots of small utilities.
+A small perl script containing different one-liners that can be executed from a menu.
+
+One-liners are adapted from https://catonmat.net/introduction-to-perl-one-liners into multiline scripts.
