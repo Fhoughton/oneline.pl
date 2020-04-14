@@ -66,6 +66,24 @@ sub countfile {
 	print("lines=$lines words=$words chars=$chars\n");
 }
 
+sub countwords {
+	my %count;
+	print "File to count in:";
+	my $file = <STDIN>;
+	chomp $file;
+	open my $fh, '<', $file or die "Could not open '$file' $!";
+	while (my $line = <$fh>) {
+		chomp $line;
+		foreach my $str (split /\s+/, $line) {
+			$count{$str}++;
+		}
+	}
+	
+	foreach my $str (sort keys %count) {
+		printf "%-31s %s\n", $str, $count{$str};
+	}
+}
+
 sub randomstring {
 	print "Enter string length: ";
 	my $strlen = <STDIN>;
@@ -93,6 +111,9 @@ $menus = {
        
 	   #perl -le 'print map { (a..z)[rand 26] } 1..8'
 	   [ "Generate random string" , sub { randomstring; }],
+	   
+	   #can't find a suitable one-liner, code comes from https://perlmaven.com/count-words-in-text-using-perl
+	   [ "Count words within a file" , sub { countwords; }],
 
 	   [ "Exit" , sub { exit; }],
     ],
